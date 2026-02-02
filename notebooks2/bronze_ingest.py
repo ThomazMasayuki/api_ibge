@@ -54,3 +54,26 @@ def run(spark: SparkSession, table_name: str):
           .partitionBy("_load_date")
           .saveAsTable(table_name)
     )
+
+# Parte de verificação
+
+run(spark, "bronze.sidra_6579_raw")
+
+DESCRIBE EXTENDED bronze.sidra_6579_raw;
+
+df = spark.table("bronze.sidra_6579_raw")
+df.printSchema()
+
+SELECT COUNT(*) FROM bronze.sidra_6579_raw;
+
+SELECT D1C, D2N, V
+FROM bronze.sidra_6579_raw
+LIMIT 20;
+
+SELECT _ingestion_ts, _load_date, _source_url
+FROM bronze.sidra_6579_raw
+LIMIT 5;
+
+# Transformando base em df_bronze para utilização em spark
+df_bronze = spark.table("bronze.sidra_6579_raw")
+display(df_bronze)

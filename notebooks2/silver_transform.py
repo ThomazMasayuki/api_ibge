@@ -34,7 +34,7 @@ df_clean = df_clean.withColumn(
 )
 display(df_clean)
 
-Criação da tabela silver
+# Criação da tabela silver
 spark.sql("CREATE DATABASE IF NOT EXISTS silver")
 
 (

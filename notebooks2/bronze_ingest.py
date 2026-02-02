@@ -74,6 +74,6 @@ SELECT _ingestion_ts, _load_date, _source_url
 FROM bronze.sidra_6579_raw
 LIMIT 5;
 
-# Transformando base em df_bronze para utilização em spark
+# Transformando a base para na camada bronze
 df_bronze = spark.table("bronze.sidra_6579_raw")
 display(df_bronze)

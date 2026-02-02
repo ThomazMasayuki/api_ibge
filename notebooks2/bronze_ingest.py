@@ -30,7 +30,6 @@ def get_json_with_retries(url, max_retries=5, timeout=60):
 
     raise RuntimeError(f"Falha ao acessar API após {max_retries} tentativas: {last_error}")
 
-
 def run(spark: SparkSession, table_name: str):
     payload = get_json_with_retries(SIDRA_URL)
 
@@ -55,8 +54,7 @@ def run(spark: SparkSession, table_name: str):
           .saveAsTable(table_name)
     )
 
-# Parte de verificação
-
+# Parte de verificação dos dados
 run(spark, "bronze.sidra_6579_raw")
 
 DESCRIBE EXTENDED bronze.sidra_6579_raw;
